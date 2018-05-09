@@ -1,0 +1,53 @@
+﻿@using Project.ClothingMall.Web
+@model IEnumerable<Project.ClothingMall.Web.ViewModels.UsersViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+<h2>User_Index</h2>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <table class="table table-bordered table-striped" style="font-size:large">
+            <thead>
+                <tr>
+                    <th>
+                        <label>UserId</label>
+                    </th>
+                    <th>
+                        <label>UserName</label>
+                    </th>
+                    <th>
+                        <label>UserPassword</label>
+                    </th>
+                    <th>
+                        Actions
+                        <a href="Users/Create" class="btn btn-success">Add</a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: users">
+                <tr>
+                    <td data-bind="text: userId"></td>
+                    <td data-bind="text: userName"></td>
+                    <td data-bind="text: userPassword"></td>
+                    <td>
+                        <a data-bind="attr: { href: '@Url.Action("Details")/' + userId }" class="btn btn-info">Details</a>
+                        <a data-bind="attr: { href: '@Url.Action("Edit")/' + userId }" class="btn btn-primary">Edit</a>
+                        <a data-bind="click:$parent.showDeleteModal,attr:{href:'@Url.Action("Delete")/'+userId}" class="btn btn-danger">Delete</a>
+
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+        
+
+    </div>
+</div>
+@section Scripts{
+@Scripts.Render("~/Scripts/ViewModels/IndexUsersViewModel.js");
+<script>
+    var viewModel = new IndexUsersViewModel(@Html.HtmlConvertToJson(Model));
+    ko.applyBindings(viewModel);
+</script>
+}
+

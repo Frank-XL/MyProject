@@ -1,0 +1,74 @@
+﻿@model Project.ClothingMall.Web.ViewModels.UsersViewModel
+ @{
+   
+    ViewBag.Title ="Edit";
+}
+
+<div data-bind="visible: !saveCompleted()">
+
+    <h2>@ViewBag.Title</h2>
+   
+    @using (Html.BeginForm("Edit", "Users", FormMethod.Post, new { data_bind = "submit: validateAndSave" }))
+    {
+        @Html.AntiForgeryToken()
+         @Html.HiddenFor(model => model.UserId)
+         @Html.HiddenFor(model => model.CreateTime)
+         @Html.HiddenFor(model => model.UpdateTime)
+        <div class="form-horizontal">
+            <h4>Author</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", data_bind = "value: author.firstName" } })
+                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.UserPassword, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.UserPassword, new { htmlAttributes = new { @class = "form-control", data_bind = "value: author.lastName" } })
+                    @Html.ValidationMessageFor(model => model.UserPassword, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control", data_bind = "value: author.biography" } })
+                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10" data-bind="visible: !sending()">
+                    <input type="submit" value= @Html.Raw("Update") class="btn btn-default" />
+                </div>
+
+                <div class="progress" data-bind="visible: sending">
+                    <div class="progress-bar progress-bar-info progress-bar-striped active"
+                         role="progressbar" aria-valuenow="100"
+                         aria-valuemin="0" aria-valuemax="100"
+                         style="width: 100%">
+                        <span class="sr-only"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/ViewModels/EditUsersViewModel.js");
+    <script>
+        var viewModel = new TestUsersViewModel(@Html.HtmlConvertToJson(Model));
+        ko.applyBindings(viewModel);
+    </script>
+}
