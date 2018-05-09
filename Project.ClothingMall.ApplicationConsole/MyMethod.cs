@@ -8,7 +8,7 @@ namespace Project.ClothingMall.ApplicationConsole
 {
     public static class MyMethod
     {
-        //一个简单的斐波那契额方法
+        //一个简单的斐波那契额方法在主分支master中进行了注释
         public static int Fib(int n)
         {
             if (n == 1 || n == 2)
