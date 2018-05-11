@@ -12,6 +12,6 @@ namespace Project.ClothingMall.IBLL
     {
          IQueryable<Users> GetEntities();
 
-         Users GetByUserId(int id);
+         Users GetByUserId(int? id);
     }
 }
