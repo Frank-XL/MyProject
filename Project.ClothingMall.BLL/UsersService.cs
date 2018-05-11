@@ -16,7 +16,7 @@ namespace Project.ClothingMall.BLL
             var temp = this.GetCurrentDbSession.UsersDal.LoadEntities(c => c.UserName!= "");
             return temp;
         }
-        public Users GetByUserId(int id)
+        public Users GetByUsersId(int? id)
         {
             Users user = this.GetCurrentDbSession.UsersDal.LoadEntities(c=>c.UserId==id).FirstOrDefault();
             return user;
