@@ -11,7 +11,7 @@ namespace Project.ClothingMall.ApplicationConsole
     {
         static void Main(string[] args)
         {
-            int n=5;
+            
             //int num = MyMethod.Fib(n);
             //Console.WriteLine(num);
             int[] a = new int[100];
