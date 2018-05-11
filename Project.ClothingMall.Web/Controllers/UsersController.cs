@@ -90,7 +90,7 @@ namespace Project.ClothingMall.Web.Controllers
             {
                 return HttpNotFound();
             }
-            return View(users);
+            return View(AutoMapper.Mapper.Map<Users, UsersViewModel>(users));
         }
         [HttpPost, ActionName("Delete")]
         public ActionResult DelteConfirmed(int id)
